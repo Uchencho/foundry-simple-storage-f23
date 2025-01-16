@@ -1,0 +1,6 @@
+## Using Cast to send a transaction through the CLI
+addressOfContract = 0x5FbDB2315678afecb367f032d93F642f64180aa3
+functionName = "store(uint256)"
+functionArguments = "123"
+
+cast send $(addressOfContract) $(functionName) $(functionArguments) --rpc-url $(RPC_URL) --account $(KEY_NAME)
