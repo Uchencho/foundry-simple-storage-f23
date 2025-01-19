@@ -30,3 +30,16 @@ invokeRetrieveFunction:
 
 convertHexToDecimal:
 	cast --to-base $(HEX_VALUE) dec
+
+# Without the fork url, you won't be able to interact with the price feed contract because it is on chain
+# And the test runs on anvil deployed locally. With the fork, it will simulate what is on the sepolia chain
+# Still running locally though
+testPriceFeedIsAccurate:
+	forge test --match-test testPriceFeedIsAccurate -vvv --fork-url $(SEPOLIA_ETH_RPC_URL)
+
+# We no longer need the fork url because we are mocking the price feed aggregator and deploying it on anvil
+testPriceFeedIsAccurateOnAnvil:
+	forge test --match-test testPriceFeedIsAccurate -vvv
+
+testCoverage:
+	forge coverage --fork-url $(SEPOLIA_ETH_RPC_URL)
